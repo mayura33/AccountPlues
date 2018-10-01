@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Shree_Plus
+namespace Shree_Plus.CommonControls
 {
 
 
-    public partial class _Default
+    public partial class Common
     {
     }
 }
