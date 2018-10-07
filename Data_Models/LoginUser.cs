@@ -8,6 +8,7 @@ namespace Data_Models
 {
     public class LoginUser
     {
-        public string userNAme { get; set; }
+        public string userName { get; set; }
+        public string Password{ get; set; }
     }
 }
