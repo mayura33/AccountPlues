@@ -44,5 +44,15 @@
     <Compile Include="ServiceLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataRepository\DataRepository.csproj">
+      <Project>{77952982-1ec7-4fbe-bf2b-bc918758e897}</Project>
+      <Name>DataRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data_Models\Data_Models.csproj">
+      <Project>{cff74ad2-8551-4292-a7cf-78ab6520fbaf}</Project>
+      <Name>Data_Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
