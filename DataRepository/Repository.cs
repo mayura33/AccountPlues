@@ -76,14 +76,13 @@ namespace DataRepository
 		public DataTable GetPurchaseDetails()
 		{
 			SqlCommand cmd = new SqlCommand("spGetPurchase", con);
-			cmd.CommandType = CommandType.StoredProcedure; cmd.CommandType = CommandType.StoredProcedure;
+			cmd.CommandType = CommandType.StoredProcedure;
 			con.Open();
 			SqlDataAdapter da = new SqlDataAdapter(cmd);
 			DataTable dt = new DataTable();
 			da.Fill(dt);
 			con.Close();
 			return dt;
-
 		}
 
 		public DataTable GetSellsDetails()
