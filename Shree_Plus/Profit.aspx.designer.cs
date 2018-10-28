@@ -13,22 +13,22 @@ namespace Shree_Plus {
     public partial class Profit {
         
         /// <summary>
-        /// fromDate control.
+        /// radFromDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDateTimePicker fromDate;
+        protected global::Telerik.Web.UI.RadDateTimePicker radFromDate;
         
         /// <summary>
-        /// toDate control.
+        /// radToDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDateTimePicker toDate;
+        protected global::Telerik.Web.UI.RadDateTimePicker radToDate;
         
         /// <summary>
         /// btnSubmit control.
@@ -58,6 +58,15 @@ namespace Shree_Plus {
         protected global::System.Web.UI.WebControls.Label lblSells;
         
         /// <summary>
+        /// lblExpense control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblExpense;
+        
+        /// <summary>
         /// lblTotalProfit control.
         /// </summary>
         /// <remarks>
@@ -65,5 +74,32 @@ namespace Shree_Plus {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalProfit;
+        
+        /// <summary>
+        /// grdPurchase control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid grdPurchase;
+        
+        /// <summary>
+        /// grdSells control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid grdSells;
+        
+        /// <summary>
+        /// grdExpense control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid grdExpense;
     }
 }

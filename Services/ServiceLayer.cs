@@ -11,61 +11,73 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class ServiceLayer
-    {
-        public bool CheckIsUserValid(LoginUser login)
-        {
-            Repository repository = new Repository();
-            return repository.checkIsUserValid(login);
-        }
+	public class ServiceLayer
+	{
+		private Repository repository;
+
+		public ServiceLayer()
+		{
+			repository = new Repository();
+		}
+
+		public bool CheckIsUserValid(LoginUser login)
+		{
+			return repository.CheckIsUserValid(login);
+		}
 
 		public bool InsertStock(PurchaseDetails purchaseDetails)
 		{
-			Repository repository = new Repository();
 			return repository.InsertStock(purchaseDetails);
 		}
 
 		public bool InsertSells(SellsDetail sellsDetail)
 		{
-			Repository repository = new Repository();
 			return repository.InsertSells(sellsDetail);
 		}
 
 		public DataTable GetPurchaseDetails()
 		{
-			Repository repository = new Repository();
 			return repository.GetPurchaseDetails();
 		}
 
 		public DataTable GetSellsDetails()
 		{
-			Repository repository = new Repository();
 			return repository.GetSellsDetails();
 		}
 
 		public DataTable GetVehiclesDetails()
 		{
-			Repository repository = new Repository();
 			return repository.GetVehiclesDetails();
 		}
 
 		public DataTable GetWarehouseDetails()
 		{
-			Repository repository = new Repository();
 			return repository.GetWarehouseDetails();
 		}
 
 		public DataTable GetExpenceDetails()
 		{
-			Repository repository = new Repository();
 			return repository.GetExpences();
 		}
 
 		public bool InsertExpence(Expences expences)
 		{
-			Repository repository = new Repository();
 			return repository.InsertExpence(expences);
 		}
 
+		public DataTable GetSellsDetails(DateTime fromDate, DateTime toDate)
+		{
+			return repository.GetSellsDetails(fromDate, toDate);
+		}
+
+		public DataTable GetPurchaseDetails(DateTime fromDate,DateTime toDate)
+		{
+			return repository.GetPurchaseDetails(fromDate, toDate);
+		}
+
+		public DataTable GetExpenseDetails(DateTime fromDate, DateTime toDate)
+		{
+			return repository.GetexpenseDetails(fromDate, toDate);
+		}
 	}
 }

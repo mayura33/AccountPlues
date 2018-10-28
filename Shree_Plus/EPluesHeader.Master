@@ -25,7 +25,7 @@
 						<li><a href="sells">Sells</a></li>
 						<li><a href="Expences">Expences</a></li>
 						<li><a href="Profit">Profit</a></li>
-						<li><a href="#">Report</a></li>
+						<li><a href="ReportSection">Report</a></li>
 					</ul>
 					<asp:Button ID="btnLogOut" runat="server" Text="LogOut" CssClass="btn btn-danger navbar-btn" OnClick="btnLogOut_Click"/>
 				</div>

@@ -6,26 +6,17 @@ using System.Data;
 using System.Data.SqlClient;
 
 
-namespace DataRepository
+namespace DataRepository 
 {
-	public class Repository
+	public class Repository : BaseRepository
 	{
-		SqlConnection con;
-
-		public Repository()
-		{
-			con = new SqlConnection(ConfigurationManager.ConnectionStrings["localDbConnectionString"].ConnectionString);
-		}
-
 		#region INSERT
 
 		public bool InsertStock(PurchaseDetails purchaseDetails)
 		{
-			SqlCommand cmd = new SqlCommand("spInsertStock", con);
+			SqlCommand cmd = GetCommand("spInsertStock");
 			cmd.Parameters.AddWithValue("@StockAmount", purchaseDetails.StockAmount);
 			cmd.Parameters.AddWithValue("@PurchaseDate", purchaseDetails.PurchaseDate);
-			cmd.CommandType = CommandType.StoredProcedure;
-			con.Open();
 			int rowAffected = cmd.ExecuteNonQuery();
 			con.Close();
 			return rowAffected > 0 ? true : false;
@@ -33,14 +24,12 @@ namespace DataRepository
 
 		public bool InsertSells(SellsDetail sellsDetail)
 		{
-			SqlCommand cmd = new SqlCommand("spInsertSells", con);
+			SqlCommand cmd = GetCommand("spInsertSells");
 			cmd.Parameters.AddWithValue("@SellsDate", sellsDetail.SellsDate);
 			cmd.Parameters.AddWithValue("@Details", sellsDetail.Details);
 			cmd.Parameters.AddWithValue("@VehicleId", sellsDetail.VehicleId);
 			cmd.Parameters.AddWithValue("@Amount", sellsDetail.Amount);
 			cmd.Parameters.AddWithValue("@WarehourseId", sellsDetail.WarehouseId);
-			cmd.CommandType = CommandType.StoredProcedure;
-			con.Open();
 			int rowAffected = cmd.ExecuteNonQuery();
 			con.Close();
 			return rowAffected > 0 ? true : false;
@@ -48,12 +37,10 @@ namespace DataRepository
 
 		public bool InsertExpence(Expences expences)
 		{
-			SqlCommand cmd = new SqlCommand("spInsertExpence", con);
+			SqlCommand cmd = GetCommand("spInsertExpence");
 			cmd.Parameters.AddWithValue("@ExpenceDetails", expences.ExpenceDetail);
 			cmd.Parameters.AddWithValue("@ExpenceCost", expences.ExpenceCost);
 			cmd.Parameters.AddWithValue("@ExpenceDate", expences.ExpenceDate);
-			cmd.CommandType = CommandType.StoredProcedure;
-			con.Open();
 			int rowAffected = cmd.ExecuteNonQuery();
 			con.Close();
 			return rowAffected > 0 ? true : false;
@@ -63,7 +50,7 @@ namespace DataRepository
 
 		#region SELECT/GET
 
-		public bool checkIsUserValid(LoginUser login)
+		public bool CheckIsUserValid(LoginUser login)
 		{
 			SqlParameter[] parameters =
 			{
@@ -75,62 +62,57 @@ namespace DataRepository
 
 		public DataTable GetPurchaseDetails()
 		{
-			SqlCommand cmd = new SqlCommand("spGetPurchase", con);
+			SqlCommand cmd = GetCommand("spGetPurchase");
 			cmd.CommandType = CommandType.StoredProcedure;
-			con.Open();
-			SqlDataAdapter da = new SqlDataAdapter(cmd);
-			DataTable dt = new DataTable();
-			da.Fill(dt);
-			con.Close();
-			return dt;
+			return GetCommandDataTable(cmd);
 		}
 
 		public DataTable GetSellsDetails()
 		{
-			SqlCommand cmd = new SqlCommand("spGetSells", con);
-			cmd.CommandType = CommandType.StoredProcedure; cmd.CommandType = CommandType.StoredProcedure;
-			con.Open();
-			SqlDataAdapter da = new SqlDataAdapter(cmd);
-			DataTable dt = new DataTable();
-			da.Fill(dt);
-			con.Close();
-			return dt;
+			SqlCommand cmd = GetCommand("spGetSells");
+			return GetCommandDataTable(cmd);
 		}
 
 		public DataTable GetVehiclesDetails()
 		{
-			SqlCommand cmd = new SqlCommand("spGetVehicles", con);
-			cmd.CommandType = CommandType.StoredProcedure; cmd.CommandType = CommandType.StoredProcedure;
-			con.Open();
-			SqlDataReader rdr = cmd.ExecuteReader();
-			var dataTable = new DataTable();
-			dataTable.Load(rdr);
-			con.Close();
-			return dataTable;
+			SqlCommand cmd = GetCommand("spGetVehicles");
+			return GetCommandDataTable(cmd);
 		}
 
 		public DataTable GetWarehouseDetails()
 		{
-			SqlCommand cmd = new SqlCommand("spGetWarehouse", con);
-			cmd.CommandType = CommandType.StoredProcedure; cmd.CommandType = CommandType.StoredProcedure;
-			con.Open();
-			SqlDataReader rdr = cmd.ExecuteReader();
-			var dataTable = new DataTable();
-			dataTable.Load(rdr);
-			con.Close();
-			return dataTable;
+			SqlCommand cmd = GetCommand("spGetWarehouse");
+			return GetCommandDataTable(cmd);
 		}
 
 		public DataTable GetExpences()
 		{
-			SqlCommand cmd = new SqlCommand("spGetExpences", con);
-			cmd.CommandType = CommandType.StoredProcedure; cmd.CommandType = CommandType.StoredProcedure;
-			con.Open();
-			SqlDataReader rdr = cmd.ExecuteReader();
-			var dataTable = new DataTable();
-			dataTable.Load(rdr);
-			con.Close();
-			return dataTable;
+			SqlCommand cmd = GetCommand("spGetExpences");
+			return GetCommandDataTable(cmd);
+		}
+
+		public DataTable GetPurchaseDetails(DateTime fromDate, DateTime toDate)
+		{
+			SqlCommand cmd = GetCommand("spGetPurchaseFilterd");
+			cmd.Parameters.AddWithValue("@StartDate", fromDate);
+			cmd.Parameters.AddWithValue("@EndDate", toDate);
+			return GetCommandDataTable(cmd);
+		}
+
+		public DataTable GetSellsDetails(DateTime fromDate, DateTime toDate)
+		{
+			SqlCommand cmd = GetCommand("spGetSellsFilterd");
+			cmd.Parameters.AddWithValue("@StartDate", fromDate);
+			cmd.Parameters.AddWithValue("@EndDate", toDate);
+			return GetCommandDataTable(cmd);
+		}
+
+		public DataTable GetexpenseDetails(DateTime fromDate, DateTime toDate)
+		{
+			SqlCommand cmd = GetCommand("spGetExpenseFilterd");
+			cmd.Parameters.AddWithValue("@StartDate", fromDate);
+			cmd.Parameters.AddWithValue("@EndDate", toDate);
+			return GetCommandDataTable(cmd);
 		}
 
 		#endregion
